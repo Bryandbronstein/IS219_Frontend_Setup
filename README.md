@@ -1,4 +1,4 @@
 # IS219_Frontend_Setup
 
-##Broswersync Screenshot
+## Broswersync Screenshot
 ![Browsersync Screenshot](screenshots/browsersync.png)
