@@ -1,17 +1,13 @@
 (function () {
-    let cities;
 
-    let httpReq = new XMLHttpRequest();
-    httpReq.onreadystatechange = function () {
-        if (this.readyState === 4 && this.status === 200) {
-            cities = JSON.parse(this.responseText);
-        }
+    function getResponseText(url){
+        let request = new  XMLHttpRequest();
+        request.open("GET",url,false);
+        request.send();
+        return JSON.parse(request.responseText);
+    }
 
-    };
-    httpReq.open("GET", "../data.json", false);
-    httpReq.send(null);
-    console.log(cities);
-
+    let cities = getResponseText("../data.json");
 
     let table = document.querySelector("table");
     let TableHeadings = Object.keys(cities[0]);
