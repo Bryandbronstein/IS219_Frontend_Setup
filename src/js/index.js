@@ -10,6 +10,8 @@
     xmlhttp.open("GET", "../data.json", false);
     xmlhttp.send();
 
+    console.log(citiesJson);
+
     let table = document.querySelector("table");
     let TableHeadings = Object.keys(citiesJson[0]);
     table.classList.add("table");
