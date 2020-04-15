@@ -7,7 +7,7 @@
             citiesJson = JSON.parse(this.responseText);
         }
     };
-    xmlhttp.open("GET", "../data.json", false);
+    xmlhttp.open("GET", "../data.json", true);
     xmlhttp.send();
 
     console.log(citiesJson);
