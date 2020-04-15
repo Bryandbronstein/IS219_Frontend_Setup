@@ -1,22 +1,23 @@
 (function () {
-    let citiesJson;
+    let cities;
 
-    let xmlhttp = new XMLHttpRequest();
-    xmlhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            citiesJson = JSON.parse(this.responseText);
+    let httpReq = new XMLHttpRequest();
+    httpReq.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
+            cities = JSON.parse(this.responseText);
         }
-    };
-    xmlhttp.open("GET", "../data.json", true);
-    xmlhttp.send();
 
-    console.log(citiesJson);
+    };
+    httpReq.open("GET", "../data.json", false);
+    httpReq.send(null);
+    console.log(cities);
+
 
     let table = document.querySelector("table");
-    let TableHeadings = Object.keys(citiesJson[0]);
+    let TableHeadings = Object.keys(cities[0]);
     table.classList.add("table");
     generateTableHead(table, TableHeadings);
-    generateTable(table, citiesJson);
+    generateTable(table, cities);
 
 })();
 
