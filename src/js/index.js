@@ -1,20 +1,20 @@
 (function () {
-    let cities;
+    let citiesJson;
 
     let xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            cities = JSON.parse(this.responseText);
+            citiesJson = JSON.parse(this.responseText);
         }
     };
     xmlhttp.open("GET", "../data.json", false);
     xmlhttp.send();
 
     let table = document.querySelector("table");
-    let TableHeadings = Object.keys(cities[0]);
+    let TableHeadings = Object.keys(citiesJson[0]);
     table.classList.add("table");
     generateTableHead(table, TableHeadings);
-    generateTable(table, cities);
+    generateTable(table, citiesJson);
 
 })();
 
