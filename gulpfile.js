@@ -14,7 +14,8 @@ const clean = require('gulp-clean');
 const isProd = process.env.NODE_ENV === 'prod';
 
 const htmlFile = [
-    'src/*.html'
+    'src/*.html',
+
 ]
 
 function html() {
@@ -66,14 +67,17 @@ function browserSyncReload(done) {
     browserSync.reload();
     done();
 }
-
+function staticJsonFile() {
+    return gulp.src('src/data.json')
+            .pipe(gulp.dest('docs'));
+};
 
 function watchFiles() {
     gulp.watch('src/**/*.html', gulp.series(html, browserSyncReload));
     gulp.watch('src/**/*.scss', gulp.series(css, browserSyncReload));
     gulp.watch('src/**/*.js', gulp.series(js, browserSyncReload));
     gulp.watch('src/img/**/*.*', gulp.series(img));
-
+    gulp.watch('src/projects/**/*.html', gulp.series(html, browserSyncReload));
     return;
 }
 
@@ -85,6 +89,7 @@ function del() {
 exports.css = css;
 exports.html = html;
 exports.js = js;
-exports.del = del;
+exports.del = del
+exports.staticJsonFile = staticJsonFile();
 exports.serve = gulp.parallel(html, css, js, img, watchFiles, serve);
 exports.default = gulp.series(del, html, css, js, img);
